@@ -27,8 +27,18 @@ public static class DependencyInjection
         {
             var interceptor = sp.GetRequiredService<AuditableEntityInterceptor>();
 
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+            // Tự động chuyển đổi Render Internal Database URL (postgres://...) sang chuẩn của .NET Npgsql
+            if (!string.IsNullOrEmpty(connectionString) && connectionString.StartsWith("postgres://"))
+            {
+                var databaseUri = new Uri(connectionString);
+                var userInfo = databaseUri.UserInfo.Split(':');
+                connectionString = $"Host={databaseUri.Host};Port={databaseUri.Port};Database={databaseUri.LocalPath.TrimStart('/')};Username={userInfo[0]};Password={userInfo[1]};SslMode=Prefer;TrustServerCertificate=true;";
+            }
+
             options.UseNpgsql(
-                configuration.GetConnectionString("DefaultConnection"),
+                connectionString,
                 b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
         });
 
