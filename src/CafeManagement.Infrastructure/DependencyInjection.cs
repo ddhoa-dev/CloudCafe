@@ -1,6 +1,7 @@
 using CafeManagement.Application.Common.Interfaces;
 using CafeManagement.Infrastructure.Data;
 using CafeManagement.Infrastructure.Data.Interceptors;
+using CafeManagement.Infrastructure.Identity;
 using CafeManagement.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -38,6 +39,10 @@ public static class DependencyInjection
         // ===== SERVICES =====
         services.AddScoped<IDateTime, DateTimeService>();
         services.AddScoped<ICurrentUserService, CurrentUserService>();
+
+        // ===== IDENTITY SERVICES =====
+        services.AddScoped<JwtTokenService>();
+        services.AddScoped<PasswordHasher>();
 
         return services;
     }
