@@ -41,8 +41,8 @@ public static class DependencyInjection
         services.AddScoped<ICurrentUserService, CurrentUserService>();
 
         // ===== IDENTITY SERVICES =====
-        services.AddScoped<JwtTokenService>();
-        services.AddScoped<PasswordHasher>();
+        services.AddScoped<IJwtTokenService, JwtTokenService>();
+        services.AddScoped<IPasswordHasher, PasswordHasher>();
 
         return services;
     }

@@ -1,5 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
+using CafeManagement.Application.Common.Interfaces;
 
 namespace CafeManagement.Infrastructure.Identity;
 
@@ -7,7 +8,7 @@ namespace CafeManagement.Infrastructure.Identity;
 /// Service để hash và verify passwords
 /// Sử dụng SHA256 (trong production nên dùng BCrypt hoặc Argon2)
 /// </summary>
-public class PasswordHasher
+public class PasswordHasher : IPasswordHasher
 {
     /// <summary>
     /// Hash password với SHA256

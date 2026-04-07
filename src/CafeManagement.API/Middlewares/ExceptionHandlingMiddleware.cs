@@ -54,11 +54,11 @@ public class ExceptionHandlingMiddleware
             {
                 StatusCode = (int)HttpStatusCode.BadRequest,
                 Message = "Validation failed",
-                Errors = validationException.Errors.Select(e => new
+                Errors = (object)validationException.Errors.Select(e => new
                 {
                     Property = e.PropertyName,
                     Message = e.ErrorMessage
-                })
+                }).ToArray()
             },
 
             // ===== NOT FOUND EXCEPTION =====
@@ -66,7 +66,7 @@ public class ExceptionHandlingMiddleware
             {
                 StatusCode = (int)HttpStatusCode.NotFound,
                 Message = notFoundException.Message,
-                Errors = Array.Empty<object>()
+                Errors = (object)Array.Empty<object>()
             },
 
             // ===== INSUFFICIENT STOCK EXCEPTION =====
@@ -74,7 +74,7 @@ public class ExceptionHandlingMiddleware
             {
                 StatusCode = (int)HttpStatusCode.BadRequest,
                 Message = insufficientStockException.Message,
-                Errors = new[]
+                Errors = (object)new[]
                 {
                     new
                     {
@@ -91,7 +91,7 @@ public class ExceptionHandlingMiddleware
             {
                 StatusCode = (int)HttpStatusCode.BadRequest,
                 Message = domainException.Message,
-                Errors = Array.Empty<object>()
+                Errors = (object)Array.Empty<object>()
             },
 
             // ===== UNHANDLED EXCEPTION =====
@@ -99,7 +99,7 @@ public class ExceptionHandlingMiddleware
             {
                 StatusCode = (int)HttpStatusCode.InternalServerError,
                 Message = "An internal server error occurred",
-                Errors = Array.Empty<object>()
+                Errors = (object)Array.Empty<object>()
             }
         };
 

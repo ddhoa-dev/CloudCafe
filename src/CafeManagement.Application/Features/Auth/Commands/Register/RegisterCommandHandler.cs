@@ -4,7 +4,6 @@ using CafeManagement.Application.DTOs.Auth;
 using CafeManagement.Domain.Entities;
 using CafeManagement.Domain.Enums;
 using CafeManagement.Domain.Exceptions;
-using CafeManagement.Infrastructure.Identity;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,14 +15,14 @@ namespace CafeManagement.Application.Features.Auth.Commands.Register;
 public class RegisterCommandHandler : IRequestHandler<RegisterCommand, TokenDto>
 {
     private readonly IApplicationDbContext _context;
-    private readonly PasswordHasher _passwordHasher;
-    private readonly JwtTokenService _jwtTokenService;
+    private readonly IPasswordHasher _passwordHasher;
+    private readonly IJwtTokenService _jwtTokenService;
     private readonly IMapper _mapper;
 
     public RegisterCommandHandler(
         IApplicationDbContext context,
-        PasswordHasher passwordHasher,
-        JwtTokenService jwtTokenService,
+        IPasswordHasher passwordHasher,
+        IJwtTokenService jwtTokenService,
         IMapper mapper)
     {
         _context = context;
