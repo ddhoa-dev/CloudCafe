@@ -31,7 +31,7 @@ public class GetIngredientsQueryHandler : IRequestHandler<GetIngredientsQuery, P
             .AsQueryable();
 
         // ===== BƯỚC 2: Apply filters =====
-        
+
         // Filter nguyên liệu sắp hết (QuantityInStock <= MinimumStockLevel)
         if (request.IsLowStock.HasValue && request.IsLowStock.Value)
         {

@@ -16,7 +16,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
 
     public ApplicationDbContext(
         DbContextOptions<ApplicationDbContext> options,
-        AuditableEntityInterceptor auditableEntityInterceptor) 
+        AuditableEntityInterceptor auditableEntityInterceptor)
         : base(options)
     {
         _auditableEntityInterceptor = auditableEntityInterceptor;

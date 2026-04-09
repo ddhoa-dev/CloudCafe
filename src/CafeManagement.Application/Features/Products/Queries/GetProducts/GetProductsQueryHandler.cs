@@ -33,7 +33,7 @@ public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, Paginat
             .AsQueryable();
 
         // ===== BƯỚC 2: Apply filters =====
-        
+
         // Filter theo category
         if (request.Category.HasValue)
         {

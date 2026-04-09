@@ -10,9 +10,9 @@ public class ProductIngredient : BaseEntity
 {
     public Guid ProductId { get; set; }
     public Product Product { get; set; } = null!;
-    
+
     public Guid IngredientId { get; set; }
     public Ingredient Ingredient { get; set; } = null!;
-    
+
     public decimal QuantityRequired { get; set; } // Số lượng nguyên liệu cần cho 1 sản phẩm
 }

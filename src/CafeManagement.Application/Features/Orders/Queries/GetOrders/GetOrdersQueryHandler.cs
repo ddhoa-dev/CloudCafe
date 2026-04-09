@@ -40,7 +40,7 @@ public class GetOrdersQueryHandler : IRequestHandler<GetOrdersQuery, PaginatedLi
             .AsQueryable();
 
         // ===== BƯỚC 2: Apply filters (nếu có) =====
-        
+
         // Filter theo trạng thái đơn hàng
         if (request.Status.HasValue)
         {

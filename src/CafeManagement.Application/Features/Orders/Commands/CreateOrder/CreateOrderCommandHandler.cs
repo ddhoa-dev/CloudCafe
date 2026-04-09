@@ -42,7 +42,7 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Gui
         // ===== BƯỚC 1: Validate sản phẩm tồn tại =====
         // Lấy danh sách ProductId từ request
         var productIds = request.Items.Select(i => i.ProductId).ToList();
-        
+
         // Query database để lấy thông tin sản phẩm kèm công thức (ProductIngredients)
         // Include: Eager loading để load cả Ingredient data
         var products = await _context.Products
@@ -79,7 +79,7 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Gui
         foreach (var item in request.Items)
         {
             var product = products.First(p => p.Id == item.ProductId);
-            
+
             // Tạo OrderItem cho mỗi sản phẩm trong đơn hàng
             var orderItem = new OrderItem
             {
@@ -227,7 +227,7 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Gui
             {
                 // TRỪ nguyên liệu trong kho
                 ingredient.QuantityInStock -= quantityToDeduct;
-                
+
                 // EF Core sẽ track thay đổi này và update khi SaveChanges()
             }
         }
@@ -261,7 +261,7 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Gui
         // Parse số thứ tự từ OrderNumber cuối cùng
         // Ví dụ: "ORD-20260406-0005" → Split → ["ORD", "20260406", "0005"] → Last() = "0005"
         var lastNumber = int.Parse(lastOrder.OrderNumber.Split('-').Last());
-        
+
         // Tăng lên 1 và format thành 4 chữ số (D4)
         return $"{prefix}-{(lastNumber + 1):D4}";
     }

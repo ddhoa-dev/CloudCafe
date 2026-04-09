@@ -14,7 +14,7 @@ public class Product : BaseEntity
     public ProductCategory Category { get; set; }
     public bool IsAvailable { get; set; } = true;
     public string? ImageUrl { get; set; }
-    
+
     // Navigation properties
     public ICollection<ProductIngredient> ProductIngredients { get; set; } = new List<ProductIngredient>();
     public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();

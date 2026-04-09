@@ -95,7 +95,7 @@ public static class DataSeeder
         await context.Products.AddRangeAsync(cfDen, cfSua, bacXiu);
 
         // ===== 3. TẠO CÔNG THỨC (RECIPES / PRODUCT INGREDIENTS) =====
-        
+
         // Cà phê đen (25g cafe)
         var rpCfDen1 = new ProductIngredient
         {
@@ -145,7 +145,7 @@ public static class DataSeeder
         };
 
         await context.ProductIngredients.AddRangeAsync(
-            rpCfDen1, rpCfSua1, rpCfSua2, 
+            rpCfDen1, rpCfSua1, rpCfSua2,
             rpBacXiu1, rpBacXiu2, rpBacXiu3
         );
 

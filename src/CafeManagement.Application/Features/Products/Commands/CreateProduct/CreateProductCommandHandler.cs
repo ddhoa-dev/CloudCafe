@@ -40,7 +40,7 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand,
             var missingIngredients = ingredientIds.Except(existingIngredients).ToList();
             if (missingIngredients.Any())
             {
-                throw new NotFoundException("Ingredient", 
+                throw new NotFoundException("Ingredient",
                     $"Không tìm thấy nguyên liệu với ID: {string.Join(", ", missingIngredients)}");
             }
         }

@@ -38,7 +38,7 @@ public class UpdateOrderStatusCommandHandler : IRequestHandler<UpdateOrderStatus
 
         // Cập nhật trạng thái mới
         order.Status = request.NewStatus;
-        
+
         // EF Core sẽ track thay đổi và update khi SaveChanges()
         await _context.SaveChangesAsync(cancellationToken);
 

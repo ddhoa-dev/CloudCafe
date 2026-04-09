@@ -17,7 +17,7 @@ public class Order : BaseEntity
     public string? CustomerName { get; set; }
     public string? CustomerPhone { get; set; }
     public string? Notes { get; set; }
-    
+
     // Navigation properties
     public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 }

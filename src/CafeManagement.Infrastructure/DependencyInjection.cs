@@ -26,14 +26,14 @@ public static class DependencyInjection
         services.AddDbContext<ApplicationDbContext>((sp, options) =>
         {
             var interceptor = sp.GetRequiredService<AuditableEntityInterceptor>();
-            
+
             options.UseNpgsql(
                 configuration.GetConnectionString("DefaultConnection"),
                 b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
         });
 
         // Register IApplicationDbContext
-        services.AddScoped<IApplicationDbContext>(provider => 
+        services.AddScoped<IApplicationDbContext>(provider =>
             provider.GetRequiredService<ApplicationDbContext>());
 
         // ===== SERVICES =====

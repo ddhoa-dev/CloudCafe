@@ -13,7 +13,7 @@ public class Ingredient : BaseEntity
     public decimal QuantityInStock { get; set; }
     public decimal MinimumStockLevel { get; set; } // Ngưỡng cảnh báo hết hàng
     public decimal UnitPrice { get; set; } // Giá mua vào
-    
+
     // Navigation properties
     public ICollection<ProductIngredient> ProductIngredients { get; set; } = new List<ProductIngredient>();
 }

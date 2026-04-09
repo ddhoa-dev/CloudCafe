@@ -7,8 +7,8 @@ public class InsufficientStockException : DomainException
     public decimal AvailableQuantity { get; }
 
     public InsufficientStockException(
-        string ingredientName, 
-        decimal requiredQuantity, 
+        string ingredientName,
+        decimal requiredQuantity,
         decimal availableQuantity)
         : base($"Không đủ nguyên liệu '{ingredientName}'. Cần: {requiredQuantity}, Còn: {availableQuantity}")
     {

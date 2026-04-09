@@ -44,7 +44,7 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, TokenDto>
     {
         // ===== BƯỚC 1: Kiểm tra username đã tồn tại =====
         var existingUser = await _context.Users
-            .FirstOrDefaultAsync(u => u.Username == request.Username || u.Email == request.Email, 
+            .FirstOrDefaultAsync(u => u.Username == request.Username || u.Email == request.Email,
                 cancellationToken);
 
         if (existingUser != null)

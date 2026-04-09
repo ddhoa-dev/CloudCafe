@@ -127,7 +127,7 @@ using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<CafeManagement.Infrastructure.Data.ApplicationDbContext>();
     context.Database.EnsureCreated();
-    
+
     // Tự động tạo dữ liệu mẫu nếu chưa có
     await CafeManagement.Infrastructure.Data.DataSeeder.SeedDataAsync(context);
 }

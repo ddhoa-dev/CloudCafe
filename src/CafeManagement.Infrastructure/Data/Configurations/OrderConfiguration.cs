@@ -66,7 +66,7 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
         // ===== INDEXES =====
         builder.HasIndex(o => o.OrderNumber)
             .IsUnique();  // OrderNumber phải unique
-        
+
         builder.HasIndex(o => o.OrderDate);
         builder.HasIndex(o => o.Status);
         builder.HasIndex(o => o.CustomerPhone);
