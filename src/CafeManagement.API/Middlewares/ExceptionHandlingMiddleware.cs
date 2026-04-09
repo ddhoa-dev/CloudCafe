@@ -98,8 +98,8 @@ public class ExceptionHandlingMiddleware
             _ => new
             {
                 StatusCode = (int)HttpStatusCode.InternalServerError,
-                Message = "An internal server error occurred",
-                Errors = (object)Array.Empty<object>()
+                Message = exception.Message, // Show exact message
+                Errors = (object)new[] { exception.InnerException?.Message ?? "No Inner Exception", exception.StackTrace ?? string.Empty }
             }
         };
 

@@ -10,6 +10,9 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Fix PostgreSQL DateTime.Now (Local time) exception
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 // ===== SERILOG CONFIGURATION =====
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
@@ -118,6 +121,16 @@ builder.Services.AddCors(options =>
 
 // ===== BUILD APP =====
 var app = builder.Build();
+
+// Tự động tạo Database nếu chưa tồn tại (giải quyết lỗi thiếu bảng Users)
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<CafeManagement.Infrastructure.Data.ApplicationDbContext>();
+    context.Database.EnsureCreated();
+    
+    // Tự động tạo dữ liệu mẫu nếu chưa có
+    await CafeManagement.Infrastructure.Data.DataSeeder.SeedDataAsync(context);
+}
 
 // ===== CONFIGURE MIDDLEWARE PIPELINE =====
 

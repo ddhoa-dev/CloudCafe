@@ -91,7 +91,7 @@ export default function Dashboard() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="card">
+                <div className="card lg:col-span-1">
                     <h2 className="text-xl font-bold mb-4">Thao tác nhanh</h2>
                     <div className="space-y-3">
                         <Link to="/orders/create" className="btn btn-primary w-full">
@@ -103,28 +103,6 @@ export default function Dashboard() {
                         <Link to="/ingredients" className="btn btn-secondary w-full">
                             Quản lý nguyên liệu
                         </Link>
-                    </div>
-                </div>
-
-                <div className="card">
-                    <h2 className="text-xl font-bold mb-4">Thông tin hệ thống</h2>
-                    <div className="space-y-3 text-sm">
-                        <div className="flex justify-between">
-                            <span className="text-gray-600">Phiên bản:</span>
-                            <span className="font-medium">1.0.0</span>
-                        </div>
-                        <div className="flex justify-between">
-                            <span className="text-gray-600">Backend:</span>
-                            <span className="font-medium">.NET 8</span>
-                        </div>
-                        <div className="flex justify-between">
-                            <span className="text-gray-600">Database:</span>
-                            <span className="font-medium">PostgreSQL</span>
-                        </div>
-                        <div className="flex justify-between">
-                            <span className="text-gray-600">Architecture:</span>
-                            <span className="font-medium">Clean Architecture</span>
-                        </div>
                     </div>
                 </div>
             </div>
