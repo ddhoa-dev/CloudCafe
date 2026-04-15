@@ -5,6 +5,8 @@ Cloud-oriented Cafe Management and Inventory System built with .NET 8 and Clean 
 [![CI/CD Pipeline](https://github.com/yourusername/CafeManagement/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/yourusername/CafeManagement/actions/workflows/ci-cd.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+**Live Demo API (Swagger):** [https://cloudcafe.onrender.com/](https://cloudcafe.onrender.com/) *(Hosted on Render Cloud with PostgreSQL)*
+
 ## Tech Stack
 
 - **Framework**: .NET 8 (ASP.NET Core Web API)

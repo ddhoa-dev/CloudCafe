@@ -140,16 +140,13 @@ app.UseMiddleware<ExceptionHandlingMiddleware>();
 // Serilog Request Logging
 app.UseSerilogRequestLogging();
 
-// Swagger (Development only)
-if (app.Environment.IsDevelopment())
+// Swagger (Bật luôn trên Production để xem Portfolio Demo)
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Cafe Management API v1");
-        c.RoutePrefix = string.Empty;  // Swagger UI tại root URL
-    });
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Cafe Management API v1");
+    c.RoutePrefix = string.Empty;  // Swagger UI tại root URL
+});
 
 // HTTPS Redirection
 app.UseHttpsRedirection();
