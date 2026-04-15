@@ -29,12 +29,16 @@ public static class DependencyInjection
 
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-            // Tự động chuyển đổi Render Internal Database URL (postgres://...) sang chuẩn của .NET Npgsql
-            if (!string.IsNullOrEmpty(connectionString) && connectionString.StartsWith("postgres://"))
+            // Tự động chuyển đổi Render Internal Database URL (postgres:// hoặc postgresql://) sang chuẩn của .NET Npgsql
+            if (!string.IsNullOrEmpty(connectionString))
             {
-                var databaseUri = new Uri(connectionString);
-                var userInfo = databaseUri.UserInfo.Split(':');
-                connectionString = $"Host={databaseUri.Host};Port={databaseUri.Port};Database={databaseUri.LocalPath.TrimStart('/')};Username={userInfo[0]};Password={userInfo[1]};SslMode=Prefer;TrustServerCertificate=true;";
+                connectionString = connectionString.Trim().Trim('"'); // Xóa khoảng trắng và dấu ngoặc kép thừa
+                if (connectionString.StartsWith("postgres://") || connectionString.StartsWith("postgresql://"))
+                {
+                    var databaseUri = new Uri(connectionString);
+                    var userInfo = databaseUri.UserInfo.Split(':');
+                    connectionString = $"Host={databaseUri.Host};Port={(databaseUri.Port > 0 ? databaseUri.Port : 5432)};Database={databaseUri.LocalPath.TrimStart('/')};Username={userInfo[0]};Password={userInfo[1]};SslMode=Prefer;TrustServerCertificate=true;";
+                }
             }
 
             options.UseNpgsql(
