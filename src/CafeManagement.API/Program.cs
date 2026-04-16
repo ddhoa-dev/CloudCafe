@@ -145,7 +145,7 @@ app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Cafe Management API v1");
-    c.RoutePrefix = string.Empty;  // Swagger UI tại root URL
+    c.RoutePrefix = "swagger";  // Swagger UI dời sang /swagger để nhường trang chủ cho React
 });
 
 // HTTPS Redirection
@@ -158,8 +158,15 @@ app.UseCors("AllowAll");
 app.UseAuthentication();
 app.UseAuthorization();
 
+// Serve React Static Files
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 // Map Controllers
 app.MapControllers();
+
+// Fallback mọi route không khớp API về React Router
+app.MapFallbackToFile("index.html");
 
 // ===== RUN APP =====
 try

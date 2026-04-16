@@ -1,4 +1,12 @@
-# ===== STAGE 1: Build =====
+# ===== STAGE 1: Build Frontend =====
+FROM node:20-alpine AS frontend-build
+WORKDIR /app/frontend
+COPY frontend/package*.json ./
+RUN npm install
+COPY frontend/ ./
+RUN npm run build
+
+# ===== STAGE 2: Build Backend =====
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
@@ -32,9 +40,11 @@ USER appuser
 # Copy published files từ stage publish
 COPY --from=publish /app/publish .
 
+# Copy frontend build sang thư mục wwwroot để .NET phục vụ dưới dụng static files
+COPY --from=frontend-build /app/frontend/dist ./wwwroot
+
 # Expose ports
 EXPOSE 5000
-EXPOSE 5001
 
 # Set environment variables
 ENV ASPNETCORE_URLS=http://+:5000

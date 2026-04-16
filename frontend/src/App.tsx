@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard'
 import Products from './pages/Products'
 import CreateProduct from './pages/CreateProduct'
 import Ingredients from './pages/Ingredients'
+import CreateIngredient from './pages/CreateIngredient'
 import Orders from './pages/Orders'
 import CreateOrder from './pages/CreateOrder'
 
@@ -23,6 +24,7 @@ function App() {
                 <Route path="products" element={<Products />} />
                 <Route path="products/create" element={<CreateProduct />} />
                 <Route path="ingredients" element={<Ingredients />} />
+                <Route path="ingredients/create" element={<CreateIngredient />} />
                 <Route path="orders" element={<Orders />} />
                 <Route path="orders/create" element={<CreateOrder />} />
             </Route>

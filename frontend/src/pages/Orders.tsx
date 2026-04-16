@@ -5,12 +5,12 @@ import { Order } from '../types'
 import toast from 'react-hot-toast'
 import { Plus } from 'lucide-react'
 
-const statusColors: Record<string, string> = {
-    Pending: 'bg-yellow-100 text-yellow-800',
-    Preparing: 'bg-blue-100 text-blue-800',
-    Ready: 'bg-green-100 text-green-800',
-    Completed: 'bg-gray-100 text-gray-800',
-    Cancelled: 'bg-red-100 text-red-800',
+const statusMap: Record<string, { label: string, color: string }> = {
+    Pending: { label: 'Đang chờ', color: 'bg-yellow-100 text-yellow-800' },
+    Preparing: { label: 'Đang pha chế', color: 'bg-blue-100 text-blue-800' },
+    Ready: { label: 'Sẵn sàng', color: 'bg-green-100 text-green-800' },
+    Completed: { label: 'Hoàn thành', color: 'bg-gray-100 text-gray-800' },
+    Cancelled: { label: 'Đã hủy', color: 'bg-red-100 text-red-800' },
 }
 
 export default function Orders() {
@@ -29,6 +29,16 @@ export default function Orders() {
             toast.error('Không thể tải danh sách đơn hàng')
         } finally {
             setLoading(false)
+        }
+    }
+
+    const handleCompleteOrder = async (orderId: string) => {
+        try {
+            await orderService.updateStatus(orderId, 4); // 4 = Completed
+            toast.success('Đã hoàn thành đơn hàng!');
+            loadOrders(); // Refresh the list
+        } catch (error) {
+            toast.error('Không thể hoàn thành đơn hàng');
         }
     }
 
@@ -56,8 +66,8 @@ export default function Orders() {
                                     {new Date(order.orderDate).toLocaleString('vi-VN')}
                                 </p>
                             </div>
-                            <span className={`px-3 py-1 rounded-full text-sm font-medium ${statusColors[order.statusName]}`}>
-                                {order.statusName}
+                            <span className={`px-3 py-1 rounded-full text-sm font-medium ${statusMap[order.statusName]?.color || 'bg-gray-100 text-gray-800'}`}>
+                                {statusMap[order.statusName]?.label || order.statusName}
                             </span>
                         </div>
 
@@ -90,6 +100,17 @@ export default function Orders() {
                                     {order.finalAmount.toLocaleString('vi-VN')}đ
                                 </span>
                             </div>
+
+                            {(order.statusName === 'Pending' || order.statusName === 'Preparing' || order.statusName === 'Ready') && (
+                                <div className="mt-6 flex justify-end">
+                                    <button
+                                        onClick={() => handleCompleteOrder(order.id)}
+                                        className="btn btn-primary bg-green-500 hover:bg-green-600 border-none shadow-lg shadow-green-500/30 w-full sm:w-auto font-bold py-3 text-lg transition-transform hover:scale-105 active:scale-95"
+                                    >
+                                        Hoàn Thành
+                                    </button>
+                                </div>
+                            )}
                         </div>
                     </div>
                 ))}

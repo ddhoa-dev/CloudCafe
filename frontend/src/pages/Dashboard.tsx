@@ -115,11 +115,11 @@ export default function Dashboard() {
                 className="mb-10 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4"
             >
                 <div>
-                    <h1 className="text-4xl font-extrabold text-slate-800 tracking-tight">Tổng Quan Trạm Quản Lý</h1>
+                    <h1 className="text-4xl font-extrabold text-slate-800 tracking-tight">Quản Lý</h1>
                     <p className="text-slate-500 mt-2 font-medium">Theo dõi hiệu suất cửa hàng cà phê thời gian thực</p>
                 </div>
                 <Link to="/orders/create" className="btn btn-primary flex items-center gap-2 px-6 py-3">
-                    <Package size={20} /> <span className="hidden sm:inline">Tạo Đơn Siêu Tốc</span><span className="sm:hidden">Tạo Lệnh</span>
+                    <Package size={20} /> <span className="hidden sm:inline">Tạo Đơn Mới</span><span className="sm:hidden">Tạo Lệnh</span>
                 </Link>
             </motion.div>
 
