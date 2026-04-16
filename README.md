@@ -238,7 +238,7 @@ This project is licensed under the MIT License.
 
 ## Author
 
-Your Name - [your.email@example.com](mailto:your.email@example.com)
+Do Dat Hoa - dodathoa71@gmail.com
 
 ## Acknowledgments
 
