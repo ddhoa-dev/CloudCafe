@@ -5,7 +5,9 @@ Cloud-oriented Cafe Management and Inventory System built with .NET 8 and Clean 
 [![CI/CD Pipeline](https://github.com/yourusername/CafeManagement/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/yourusername/CafeManagement/actions/workflows/ci-cd.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**Live Demo API (Swagger):** [https://cloudcafe.onrender.com/](https://cloudcafe.onrender.com/) *(Hosted on Render Cloud with PostgreSQL)*
+**Live Demo:** [https://cloudcafe.onrender.com/](https://cloudcafe.onrender.com/) *(Hosted on Render Cloud with PostgreSQL)*
+
+> 💡 **Admin Testing Note:** To test all administrative features (like creating ingredients or full product recipes), simply **Register a new account** with the username strictly set to `admin`. The system is programmed to automatically promote this specific username to `Admin` role upon registration!
 
 ## Tech Stack
 
