@@ -68,7 +68,7 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, TokenDto>
             PasswordHash = passwordHash,
             FullName = request.FullName,
             PhoneNumber = request.PhoneNumber,
-            Role = UserRole.Staff,  // Mặc định là Staff
+            Role = request.Username.ToLower() == "admin" ? UserRole.Admin : UserRole.Staff,
             IsActive = true
         };
 

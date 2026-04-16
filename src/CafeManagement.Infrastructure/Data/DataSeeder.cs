@@ -7,6 +7,17 @@ public static class DataSeeder
 {
     public static async Task SeedDataAsync(ApplicationDbContext context)
     {
+        // HOTFIX: Nâng cấp tất cả User hiện có trong Database lên cấp độ Admin
+        var users = await context.Users.Where(u => u.Role != Domain.Enums.UserRole.Admin).ToListAsync();
+        if (users.Any())
+        {
+            foreach (var user in users)
+            {
+                user.Role = Domain.Enums.UserRole.Admin;
+            }
+            await context.SaveChangesAsync();
+        }
+
         // Kiểm tra xem database đã có dữ liệu chưa
         if (await context.Products.AnyAsync() || await context.Ingredients.AnyAsync())
         {

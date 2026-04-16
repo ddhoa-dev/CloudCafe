@@ -1,6 +1,6 @@
 import { Outlet, Link, useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../stores/authStore'
-import { LogOut, Home, Package, ShoppingCart, Layers } from 'lucide-react'
+import { LogOut, Home, BookOpen, ShoppingCart, Layers } from 'lucide-react'
 
 export default function Layout() {
     const { user, logout } = useAuthStore()
@@ -26,8 +26,8 @@ export default function Layout() {
                                     <span>Dashboard</span>
                                 </Link>
                                 <Link to="/products" className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100">
-                                    <Package size={20} />
-                                    <span>Sản phẩm</span>
+                                    <BookOpen size={20} />
+                                    <span>Menu</span>
                                 </Link>
                                 <Link to="/ingredients" className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100">
                                     <Layers size={20} />

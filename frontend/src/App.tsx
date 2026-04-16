@@ -5,6 +5,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import Products from './pages/Products'
+import CreateProduct from './pages/CreateProduct'
 import Ingredients from './pages/Ingredients'
 import Orders from './pages/Orders'
 import CreateOrder from './pages/CreateOrder'
@@ -20,6 +21,7 @@ function App() {
             <Route path="/" element={isAuthenticated ? <Layout /> : <Navigate to="/login" />}>
                 <Route index element={<Dashboard />} />
                 <Route path="products" element={<Products />} />
+                <Route path="products/create" element={<CreateProduct />} />
                 <Route path="ingredients" element={<Ingredients />} />
                 <Route path="orders" element={<Orders />} />
                 <Route path="orders/create" element={<CreateOrder />} />
